@@ -1,0 +1,97 @@
+---
+title: "Translating prior predictive distributions into priors for model parameters"
+subtitle: "SURPH away day"
+author: "Andrew Manderson"
+date: "2022-05-27"
+output:
+  beamer_presentation:
+    includes:
+      in_header:
+        tex-input/pre.tex
+    keep_tex: yes
+    theme: metropolis
+    latex_engine: xelatex
+    slide_level: 1
+    incremental: no
+fontsize: 14pt
+# bibliography: bibliography/multi-phi-bib.bib
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment = NA, fig.align = "center")
+```
+
+# An example
+
+- You find yourself modelling human growth, measured in centimetres, for a uniformly random sample of adolescents
+
+# Possible prior predictive
+
+Possible prior predictive $\textcolor{myredhighlight}{t(Y)} =$
+
+```{r ppd_one}
+knitr::include_graphics("figures/pb-model/pop-target-marginal.pdf")
+```
+
+# Model (1)
+
+- "_The Preece-Baines model is a standard model for this kind of data_"
+- The simplest PB model looks like this:
+
+\begin{equation*}
+  Y(\texttt{age}) = h_{1} - \frac{
+    2(h_{1} - h_{0})
+  } {
+    \exp\left\{s_{0}(\texttt{age} - \gamma)\right\}
+    \exp\left\{s_{1}(\texttt{age} - \gamma)\right\}
+  }
+\end{equation*}
+
+# Model (2)
+
+\begin{equation*}
+  Y(\texttt{age}) = h_{1} - \frac{
+    2(h_{1} - h_{0})
+  } {
+    \exp\left\{s_{0}(\texttt{age} - \gamma)\right\}
+    \exp\left\{s_{1}(\texttt{age} - \gamma)\right\}
+  }
+\end{equation*}
+
+- How should you "translate" $\pd(Y)$ into a joint prior for $\theta = (h_{1}, h_{0}, s_{0}, s_{1}, \gamma)$?
+- Best practice is _painful_ (especially for more complex models)
+
+# General idea (1)
+
+- Pick hyperparameters $\lambda$ of prior $\pd(\theta \mid \lambda)$ by minimising some discrepancy
+
+\begin{equation*}
+  D(\lambda) = \int d\left(
+  \textcolor{blues2}{\pd(Y \mid \lambda)}, \textcolor{myredhighlight}{t(Y)}\right) \text{d}Y
+\end{equation*}
+
+- Solution $\lambda^{*} = \min_{\lambda} D(\lambda)$
+
+# General idea (2)
+
+- Solution $\textcolor{blues2}{\pd(Y \mid \lambda^{*})}$ and target $\textcolor{myredhighlight}{t(Y)}$:
+
+```{r}
+knitr::include_graphics("figures/pb-model/pop-target-marginal-with-samples.pdf")
+```
+
+# Challenges
+
+- Optimisation surface
+- Numerics
+- Inherent, irreducible noise
+- Underspecification
+
+# Partial solutions
+
+We can partly address these issues:
+
+- Two-stage, multi-objective, gradient-free global optimisation
+- Careful numerical implementation and importance sampling
+- Regularisation term(s)
+- `R` package implementation with few requirements for users: [\textcolor{blue}{gitlab.com/andrew-manderson/pbbo}](https://gitlab.com/andrew-manderson/pbbo)

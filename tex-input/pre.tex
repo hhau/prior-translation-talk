@@ -1,0 +1,90 @@
+\usepackage{amsmath}
+% I always seem to need tikz for something
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes, intersections, through, backgrounds, fit, decorations.pathmorphing}
+
+% \usepackage{setspace}
+% \onehalfspacing
+
+\usepackage{lineno}
+% \linenumbers
+
+% required for landscape pages. beware, they back the build very slow.
+\usepackage{pdflscape}
+
+% table
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{caption}
+
+\usepackage{fontspec}
+\newfontfamily\DejaSans{DejaVu Sans}
+
+% \usepackage[colorlinks=true, urlcolor=citecolor, linkcolor=citecolor, citecolor=citecolor]{hyperref}
+
+% cross out math
+\usepackage[makeroom]{cancel}
+
+\usepackage{wasysym}
+
+\DeclareFontShape{OT1}{cmss}{b}{n}{<->ssub * cmss/bx/n}{}
+
+\usepackage{color}
+\definecolor{myredhighlight}{RGB}{180, 15, 32}
+\definecolor{mydarkblue}{RGB}{2, 62, 138}
+\definecolor{mymidblue}{RGB}{0, 150, 199}
+\definecolor{blues2}{RGB}{44, 127, 184}
+\definecolor{mylightblue}{RGB}{72, 202, 228}
+\definecolor{mymidgreen}{RGB}{116, 156, 77}
+\definecolor{mypink}{RGB}{238, 51, 119}
+\newcommand{\semitransp}[2][35]{\color{fg!#1}#2}
+
+% beamer things
+\setbeamercolor{frametitle}{bg=black}
+\setbeamerfont{footnote}{size=\tiny}
+\widowpenalties 1 100
+
+\setcounter{secnumdepth}{3}
+
+% pd stands for: probability distribution and is useful to distringuish
+% marignals for probabilities specifically p(p_{1}) and the like.
+\newcommand{\pd}{\text{p}}
+\newcommand{\q}{\text{q}}
+\newcommand{\w}{\text{w}}
+\newcommand{\pdr}{\text{r}}
+\newcommand{\pdrh}{\hat{\text{r}}}
+
+% melding
+\newcommand{\ppoolphi}{\pd_{\text{pool}}(\phi)}
+
+% the q(x)w(x), "weighted target" density
+% for the moment I'm going to call it s(x), as that is the next letter of the
+% alphabet. Can change it later
+\newcommand{\s}{\text{s}}
+% direct density estimate - replaces lambda.
+\newcommand{\ddest}{\text{s}}
+
+% constants - usually sizes of things
+\newcommand{\Nx}{N}
+\newcommand{\Nnu}{\text{N}_{\text{nu}}}
+\newcommand{\Nde}{\text{N}_{\text{de}}}
+\newcommand{\Nmc}{\text{N}_{\text{mc}}}
+\newcommand{\Nw}{W}
+\newcommand{\Nm}{M}
+
+% locales - could switch to x and x'
+\newcommand{\xnu}{x_{\text{nu}}}
+\newcommand{\xde}{x_{\text{de}}}
+\newcommand{\phinu}{\phi_{\text{nu}}}
+\newcommand{\phide}{\phi_{\text{de}}}
+
+% sugiyama stuff
+\newcommand{\pdnu}{\pd_{\text{nu}}}
+\newcommand{\pdde}{\pd_{\text{de}}}
+
+
+% indices
+\newcommand{\wfindex}{w}
+\newcommand{\sampleindex}{n}
+\newcommand{\modelindex}{m}
+
