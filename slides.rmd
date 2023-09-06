@@ -1,5 +1,5 @@
 ---
-title: "Translating prior predictive distributions into priors for model parameters"
+title: "Translating prior predictive distributions"
 subtitle: "SURPH away day"
 author: "Andrew Manderson"
 date: "2022-05-27"
@@ -19,6 +19,7 @@ fontsize: 14pt
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE, comment = NA, fig.align = "center")
+# Rscript -e "rmarkdown::render('slides.rmd')"
 ```
 
 # An example
